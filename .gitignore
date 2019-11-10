@@ -2,3 +2,6 @@
 target
 browser_session.txt
 *.iml
+jre-8u231-windows-x64.exe
+selenium-server-standalone-3.9.1.jar
+IEDriverServer.exe
