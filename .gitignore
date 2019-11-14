@@ -5,3 +5,6 @@ browser_session.txt
 jre-8u231-windows-x64.exe
 selenium-server-standalone-3.9.1.jar
 IEDriverServer.exe
+ChromeStandaloneSetup64.exe
+FirefoxSetup*.exe
+chromedriver.exe
