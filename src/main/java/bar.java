@@ -1,6 +1,8 @@
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.firefox.FirefoxProfile;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -15,7 +17,7 @@ import java.net.URL;
 
 public class bar {
     private static void testByLocal() {
-        WebDriver driver = new InternetExplorerDriver();
+        WebDriver driver = new EdgeDriver();
         driver.get("https://www.google.com");
         System.out.println("Begin");
         WebElement it = driver.findElement(By.id("hptl"));
@@ -26,6 +28,7 @@ public class bar {
             } else {
                 System.out.println("Not find element");
             }
+            driver.quit();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -50,6 +53,12 @@ public class bar {
             }
             if(browser.equalsIgnoreCase("firefox")){
                 FirefoxOptions cap = new FirefoxOptions();
+                cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
+                        UnexpectedAlertBehaviour.IGNORE);
+                driver = new RemoteWebDriver(url, cap);
+            }
+            if(browser.equalsIgnoreCase("edge")){
+                EdgeOptions cap = new EdgeOptions();
                 cap.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR,
                         UnexpectedAlertBehaviour.IGNORE);
                 driver = new RemoteWebDriver(url, cap);

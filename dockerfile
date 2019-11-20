@@ -14,6 +14,10 @@ COPY chromedriver.exe C:/
 
 COPY selenium-server-standalone-3.9.1.jar C:/
 
+RUN ["powershell", "Set-Service 'wuauserv' -StartupType Automatic"]
+RUN ["powershell", "Start-Service -Name wuauserv"]
+RUN ["powershell", "DISM.exe /Online /Add-Capability /CapabilityName:Microsoft.WebDriver~~~~0.0.1.0"]
+
 RUN ["FirefoxSetup70.0.1.exe", "/S"]
 RUN ["jre-8u231-windows-x64.exe", "/s"]
 RUN ["ChromeStandaloneSetup64.exe", "/silent", "/install"]

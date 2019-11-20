@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  hub:
+    image: test-on-windows
+    ports:
+      - "4444:4444"
+    command: java -jar selenium-server-standalone-3.9.1.jar -port 4444 -role hub
+  chrome:
+    image: test-on-windows
+    command: java -jar selenium-server-standalone-3.9.1.jar -port 4458 -role node -hub http://192.168.5.144:4444/grid/register -hubHost 192.168.5.144 -hubPort 4444 -browser  "browserName=chrome,version=78,platform=WINDOWS,maxInstances=10"
+    depends_on:
+      - hub
