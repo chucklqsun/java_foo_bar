@@ -21,7 +21,21 @@ start docker run --rm test-on-windows java -jar selenium-server-standalone-3.9.1
 FOR /f "tokens=*" %i IN ('docker ps -q') DO docker stop %i
 
 ## Use docker-compose to scale
+```
 docker-compose up
 docker-compose scale chrome=3
 docker-compose down
+```
+
+## Use official ubuntu images (firefox and chrome)
+```
+docker-compose -f docker-compose-ubuntu up
+docker-compose -f docker-compose-ubuntu scale chrome=3
+docker-compose -f docker-compose-ubuntu down
+```
+You can find mapping port and use RealVNC to debug
+e.g.
+```
+docker port selenium_firefox_1 5900
+```
 
