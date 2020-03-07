@@ -1,0 +1,20 @@
+FROM ubuntu:latest
+
+RUN apt-get update
+
+RUN apt-get install -y python3
+RUN apt-get install -y squid
+
+COPY squid.conf /etc/squid/squid.conf
+
+# for debug
+RUN touch /squid-redirect.log
+RUN chmod 777 /squid-redirect.log
+
+COPY redirect.py /
+RUN chmod 777 /redirect.py
+
+ENTRYPOINT ["/usr/sbin/squid", "-NYCd1"]
+
+# for debug
+# ENTRYPOINT ["/bin/bash"]
